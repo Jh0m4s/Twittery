@@ -16,6 +16,8 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadTweet()
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 150
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -73,6 +75,9 @@ class HomeTableViewController: UITableViewController {
         if let imageData = data{
             cell.profileImageView.image = UIImage(data: imageData)
         }
+        
+        cell.setFavorite(tweetsArray[indexPath.row]["favorited"] as! Bool)
+        cell.tweetId = tweetsArray[indexPath.row]["id"] as! Int
         
         return cell
     }
